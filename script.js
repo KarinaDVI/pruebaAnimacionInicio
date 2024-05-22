@@ -20,19 +20,37 @@ const cardscontainer = document.getElementById('cardindex') //Contenedor de las 
 document.addEventListener('DOMContentLoaded', (event) => {
   if(document.body.classList.contains("bodystyles")){
 
+    if (!sessionStorage.getItem("homeAnimationExecuted")) {
+
     masked.forEach(element => {
       element.style.opacity=0
     });
     //Al tener el documento cargado ejecuta las animaciones:
       fullcover.classList.add('animateonload');
       rotcover.classList.add('animateonloadtext');
-    
+    }
+
+    fullcover.addEventListener('animationend', () => {
+      setTimeout(() => {
+       
+       //Borra el banner despues de ejecutar la animación
+       while (fullcover.lastElementChild) {
+         fullcover.removeChild(fullcover.lastElementChild);
+       }
+       fullcover.remove();
+   
+       masked.forEach(element => {
+         element.style.opacity=1
+       });
+      }, 3000);
+     
+     });
   }
   
  
   });
 
-  fullcover.addEventListener('animationend', () => {
+  /* fullcover.addEventListener('animationend', () => {
    setTimeout(() => {
     
     //Borra el banner despues de ejecutar la animación
@@ -46,7 +64,7 @@ document.addEventListener('DOMContentLoaded', (event) => {
     });
    }, 3000);
   
-  });
+  }); */
 
   //Para rellenar las tarjetas con los datos de los grupos:
 
