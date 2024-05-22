@@ -53,12 +53,13 @@ document.addEventListener('DOMContentLoaded', (event) => {
   }
 
   const mostrarElementos=()=>{
+      fullcover.remove();
       fullcover.style.opacity=0;
-    while (fullcover.lastElementChild) {
+    /* while (fullcover.lastElementChild) {
       fullcover.removeChild(fullcover.lastElementChild);
-    }
+    } */
     //Borra el banner despues de ejecutar la animación
-    fullcover.remove();
+   /*  fullcover.remove(); */
 
     masked.forEach(element => {
       element.style.opacity=1
