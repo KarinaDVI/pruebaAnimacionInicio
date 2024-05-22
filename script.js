@@ -22,49 +22,47 @@ document.addEventListener('DOMContentLoaded', (event) => {
 
     if (!sessionStorage.getItem("homeAnimationExecuted")) {
 
+      enmascararElementos();
+      setTimeout(() => {
+        mostrarElementos();
+      }, 3000);
+
+     /* Guarda el estado de ejecución de la animación en la sesión del explorador
+       asi no se ejecuta cada vez que redirige a la página, solo cuando se carga la pestaña.
+      Se muestra la animación de nuevo solo si se cierra el explorador y se abre de nuevo la página 
+      o se cierra y se abre la página. */
+      sessionStorage.setItem("homeAnimationExecuted", "true");
+    }
+    else{
+      mostrarElementos();
+    }
+    
+  }
+  
+  });
+
+  const enmascararElementos=()=>{
     masked.forEach(element => {
       element.style.opacity=0
     });
     //Al tener el documento cargado ejecuta las animaciones:
       fullcover.classList.add('animateonload');
       rotcover.classList.add('animateonloadtext');
-    }
-
-    fullcover.addEventListener('animationend', () => {
-      setTimeout(() => {
-       
-       //Borra el banner despues de ejecutar la animación
-       while (fullcover.lastElementChild) {
-         fullcover.removeChild(fullcover.lastElementChild);
-       }
-       fullcover.remove();
-   
-       masked.forEach(element => {
-         element.style.opacity=1
-       });
-      }, 3000);
-     
-     });
+//Luego de transcurrido el tiempo de animación vuelve la opacidad a todo
+      
   }
-  
- 
-  });
 
-  /* fullcover.addEventListener('animationend', () => {
-   setTimeout(() => {
-    
-    //Borra el banner despues de ejecutar la animación
+  const mostrarElementos=()=>{
     while (fullcover.lastElementChild) {
       fullcover.removeChild(fullcover.lastElementChild);
     }
+    //Borra el banner despues de ejecutar la animación
     fullcover.remove();
 
     masked.forEach(element => {
       element.style.opacity=1
     });
-   }, 3000);
-  
-  }); */
+  }
 
   //Para rellenar las tarjetas con los datos de los grupos:
 
