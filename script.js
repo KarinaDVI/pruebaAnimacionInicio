@@ -53,6 +53,7 @@ document.addEventListener('DOMContentLoaded', (event) => {
   }
 
   const mostrarElementos=()=>{
+      fullcover.style.opacity=0;
     while (fullcover.lastElementChild) {
       fullcover.removeChild(fullcover.lastElementChild);
     }
